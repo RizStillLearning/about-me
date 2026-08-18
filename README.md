@@ -58,3 +58,20 @@ src/
 ## Deploying
 
 The build output in `dist/` (from `npm run build`) is static and can be deployed to any static host — Vercel, Netlify, GitHub Pages, Cloudflare Pages, etc.
+
+### Deploying to Vercel
+
+This repo includes a `vercel.json` that pins the build settings (Vite framework, `npm run build`, output in `dist/`).
+
+**Option A — Git integration (recommended):**
+1. Push this repo to GitHub (already done if you're reading this from `RizStillLearning/about-me`).
+2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
+3. Vercel reads `vercel.json` automatically — just click **Deploy**.
+4. Every push to `main` triggers a new deployment.
+
+**Option B — Vercel CLI:**
+```bash
+npm install -g vercel
+vercel        # first run links/creates the project and deploys a preview
+vercel --prod # deploy to production
+```
