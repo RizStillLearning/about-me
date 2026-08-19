@@ -63,6 +63,30 @@ export const projects = [
     github: "https://github.com/yourusername/project-three",
     demo: "",
   },
+  {
+    title: "Project Four",
+    description:
+      "A short description of your fourth project — what problem it solves and who it's for.",
+    tags: ["TypeScript", "Next.js", "Prisma"],
+    github: "https://github.com/yourusername/project-four",
+    demo: "",
+  },
+  {
+    title: "Project Five",
+    description:
+      "A short description of your fifth project — call out any interesting technical challenges.",
+    tags: ["Vue", "Express", "MySQL"],
+    github: "https://github.com/yourusername/project-five",
+    demo: "",
+  },
+  {
+    title: "Project Six",
+    description:
+      "A short description of your sixth project — mention the outcome or what you'd improve next.",
+    tags: ["React Native", "Firebase"],
+    github: "https://github.com/yourusername/project-six",
+    demo: "",
+  },
 ];
 
 export const socials = [
