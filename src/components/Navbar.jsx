@@ -22,22 +22,22 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 inset-x-0 z-50 animate-fade-down transition-all duration-300 ${
         scrolled
           ? "bg-[#05060a]/80 backdrop-blur-lg border-b border-white/10"
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between h-20">
         <a
           href="#home"
-          className="font-display font-semibold text-lg tracking-tight text-white"
+          className="font-display font-semibold text-xl tracking-tight text-white"
         >
           {profile.name.split(" ")[0]}
           <span className="text-violet-400">.</span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-8 text-sm text-white/70">
+        <ul className="hidden md:flex items-center gap-8 text-[15px] text-white/70">
           {links.map((link) => (
             <li key={link.href}>
               <a
@@ -52,7 +52,7 @@ export default function Navbar() {
 
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center rounded-full bg-white text-black text-sm font-medium px-4 py-2 hover:bg-white/90 transition-colors"
+          className="hidden md:inline-flex items-center rounded-full bg-white text-black text-sm font-medium px-5 py-2.5 hover:bg-white/90 transition-colors"
         >
           Get in touch
         </a>
@@ -62,7 +62,7 @@ export default function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 

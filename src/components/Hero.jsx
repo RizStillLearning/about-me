@@ -7,7 +7,7 @@ export default function Hero() {
   );
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-16">
+    <section id="home" className="relative min-h-screen flex items-center pt-20">
       <div className="max-w-6xl mx-auto px-6 w-full grid md:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
         <div className="animate-fade-up">
           <p className="inline-flex items-center gap-2 text-sm text-violet-300 bg-violet-500/10 border border-violet-500/20 rounded-full px-3 py-1 mb-6">
