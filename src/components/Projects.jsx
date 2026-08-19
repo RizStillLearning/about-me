@@ -11,17 +11,23 @@ export default function Projects() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [dotCount, setDotCount] = useState(projects.length);
 
   const updateScrollState = () => {
     const el = scrollerRef.current;
     if (!el) return;
+    const maxScrollLeft = el.scrollWidth - el.clientWidth;
     setCanScrollLeft(el.scrollLeft > 8);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 8);
+    setCanScrollRight(el.scrollLeft < maxScrollLeft - 8);
 
     const card = el.children[0];
     if (card) {
       const step = card.offsetWidth + 24;
       setActiveIndex(Math.round(el.scrollLeft / step));
+      // Dots represent reachable scroll stops, not individual cards — once
+      // enough cards fit in view, the last few stops become unreachable
+      // (the carousel can't scroll past its last card).
+      setDotCount(Math.min(projects.length, Math.round(maxScrollLeft / step) + 1));
     }
   };
 
@@ -157,12 +163,12 @@ export default function Projects() {
           className={`mt-8 flex items-center justify-center gap-2 ${revealClass(inView)}`}
           style={revealStyle(inView, projects.length * 90)}
         >
-          {projects.map((project, index) => (
+          {Array.from({ length: dotCount }).map((_, index) => (
             <button
-              key={project.title}
+              key={index}
               type="button"
               onClick={() => scrollToIndex(index)}
-              aria-label={`Go to ${project.title}`}
+              aria-label={`Go to slide ${index + 1}`}
               className={`h-1.5 rounded-full transition-all ${
                 index === activeIndex
                   ? "w-6 bg-violet-400"
