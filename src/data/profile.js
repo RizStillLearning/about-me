@@ -1,6 +1,7 @@
 // Edit this file to personalize the entire site — every component reads from here.
 import { FaGithub, FaLinkedin, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { Mail } from "lucide-react";
+import profilePhoto from "../assets/pas_foto.jpg";
 
 export const profile = {
   name: "Harris Kristanto",
@@ -9,6 +10,10 @@ export const profile = {
   bio: "I'm a Computer Science student at BINUS University, passionate about software development, web technologies, and solving real-world problems through code. Always learning, always building.",
   location: "Jakarta, Indonesia",
   avatarInitials: "HK",
+  // Paste an image URL here, e.g. "https://example.com/photo.jpg".
+  // For a local file instead: drop it in src/assets/, then import it at
+  // the top of this file and reference the import here, as done above.
+  photo: profilePhoto,
 };
 
 export const education = [

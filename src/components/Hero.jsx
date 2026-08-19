@@ -60,10 +60,18 @@ export default function Hero() {
         <div className="hidden md:flex justify-center animate-fade-up">
           <div className="relative">
             <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-violet-500/40 to-cyan-400/30 blur-2xl" />
-            <div className="relative w-64 h-64 lg:w-72 lg:h-72 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center border border-white/10 shadow-2xl">
-              <span className="font-display text-6xl font-bold text-white/90">
-                {profile.avatarInitials}
-              </span>
+            <div className="relative w-64 h-64 lg:w-72 lg:h-72 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-600 flex items-center justify-center border border-white/10 shadow-2xl overflow-hidden">
+              {profile.photo ? (
+                <img
+                  src={profile.photo}
+                  alt={profile.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <span className="font-display text-6xl font-bold text-white/90">
+                  {profile.avatarInitials}
+                </span>
+              )}
             </div>
           </div>
         </div>
