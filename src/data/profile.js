@@ -1,6 +1,6 @@
 // Edit this file to personalize the entire site — every component reads from here.
 import { FaGithub, FaLinkedin, FaInstagram, FaXTwitter } from "react-icons/fa6";
-import { Mail } from "lucide-react";
+import { HardHat, Leaf, Mail, Sprout, Terminal, TrafficCone } from "lucide-react";
 import profilePhoto from "../assets/pas_foto.jpg";
 
 export const profile = {
@@ -41,51 +41,44 @@ export const skills = [
 export const projects = [
   {
     title: "Plantiz",
+    // Optional: a lucide-react icon for the card. Falls back to a folder icon.
+    icon: Sprout,
     description:
       "A website that provides plant recommendation based on user's environment and preferences.",
     tags: ["React", "FastAPI", "Bootstrap"],
-    github: "https://github.com/RizStillLearning/plantiz",
-    demo: "",
+    demo: "https://plantiz.vercel.app/",
   },
   {
-    title: "Project Two",
+    title: "Plant Species Classifier",
+    icon: Leaf,
     description:
-      "A short description of your second project — highlight the tech stack and your role in building it.",
-    tags: ["Python", "Flask", "PostgreSQL"],
-    github: "https://github.com/yourusername/project-two",
-    demo: "",
+      "An image classification model that identifies plant species from a photo, deployed as an interactive Gradio app on Hugging Face Spaces.",
+    tags: ["PyTorch", "Gradio"],
+    demo: "https://huggingface.co/spaces/harriskr14/plant-species-classifier",
   },
   {
-    title: "Project Three",
+    title: "PPE Surveillance Application",
+    icon: HardHat,
     description:
-      "A short description of your third project — mention what makes it interesting or what you learned.",
-    tags: ["Java", "Android"],
-    github: "https://github.com/yourusername/project-three",
-    demo: "",
+      "Detects hardhats and safety vests on people in uploaded images or video and flags anyone missing required PPE, using a YOLO model fine-tuned on a construction site safety dataset.",
+    tags: ["YOLO", "PyTorch", "Gradio"],
+    demo: "https://huggingface.co/spaces/harriskr14/PPE-Surveillance",
   },
   {
-    title: "Project Four",
+    title: "C++ Playground",
+    icon: Terminal,
     description:
-      "A short description of your fourth project — what problem it solves and who it's for.",
-    tags: ["TypeScript", "Next.js", "Prisma"],
-    github: "https://github.com/yourusername/project-four",
-    demo: "",
+      "A browser-based C++ runner that compiles and executes code with a chosen standard and optimization level, then displays the program output or compiler errors.",
+    tags: ["JavaScript", "Python", "Compiler Explorer"],
+    demo: "https://cpp-runner-rose.vercel.app/",
   },
   {
-    title: "Project Five",
+    title: "Traffic Violation Detection",
+    icon: TrafficCone,
     description:
-      "A short description of your fifth project — call out any interesting technical challenges.",
-    tags: ["Vue", "Express", "MySQL"],
-    github: "https://github.com/yourusername/project-five",
-    demo: "",
-  },
-  {
-    title: "Project Six",
-    description:
-      "A short description of your sixth project — mention the outcome or what you'd improve next.",
-    tags: ["React Native", "Firebase"],
-    github: "https://github.com/yourusername/project-six",
-    demo: "",
+      "Detects vehicles, riders, and traffic violations such as missing helmets, triple riding, and phone use in images, using a YOLO model fine-tuned on a 12-class traffic violation dataset.",
+    tags: ["YOLO", "PyTorch", "Gradio"],
+    demo: "https://huggingface.co/spaces/harriskr14/traffic-violation-detection",
   },
 ];
 
