@@ -18,12 +18,28 @@ export const profile = {
 
 export const education = [
   {
+    school: "SMA Katolik Sang Timur",
+    degree: "Senior High School Diploma",
+    period: "2021 — 2024",
+    status: "Graduated",
+    description:
+      "Completed senior high school education, building a strong foundation in mathematics and science before continuing on to study Computer Science.",
+  },
+  {
     school: "BINUS University",
     degree: "Bachelor of Computer Science",
-    period: "2023 — Present",
+    period: "2024 — Present",
     status: "In Progress",
     description:
       "Currently pursuing a Bachelor's degree in Computer Science, focusing on software engineering, algorithms, and web development.",
+  },
+];
+
+export const organizations = [
+  {
+    name: "Data Science Club BINUS",
+    role: "Activist",
+    period: "2025 — Present",
   },
 ];
 
