@@ -30,6 +30,8 @@ export const education = [
     degree: "Bachelor of Computer Science",
     period: "2024 — Present",
     status: "In Progress",
+    // Optional — omit this field on entries that shouldn't show a GPA.
+    gpa: "3.84 / 4.00",
     description:
       "Currently pursuing a Bachelor's degree in Computer Science, focusing on software engineering, algorithms, and web development.",
   },
@@ -37,9 +39,16 @@ export const education = [
 
 export const organizations = [
   {
+    name: "KLIFONARA BINUS",
+    role: "Member",
+    period: "2024 — Present",
+  },
+  {
     name: "Data Science Club BINUS",
     role: "Activist",
     period: "2025 — Present",
+    // Optional — roles held in specific events or programs run by the org.
+    experiences: ["Secretary of DSC x Ureeka Workshop 2026"],
   },
 ];
 

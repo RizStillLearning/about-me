@@ -71,6 +71,12 @@ export default function About() {
                       </div>
                       <p className="text-white/70 mt-1">{edu.degree}</p>
                       <p className="text-white/40 text-sm mt-1">{edu.period}</p>
+                      {edu.gpa && (
+                        <p className="inline-flex items-center gap-2 mt-3 text-sm rounded-full bg-violet-500/10 border border-violet-500/20 px-3 py-1">
+                          <span className="text-white/50">Current GPA</span>
+                          <span className="font-medium text-violet-200">{edu.gpa}</span>
+                        </p>
+                      )}
                       <p className="text-white/50 text-sm mt-3 leading-relaxed">
                         {edu.description}
                       </p>
