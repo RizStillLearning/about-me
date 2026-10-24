@@ -1,0 +1,24 @@
+.prompt {
+  margin-bottom: var(--space-3);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.prompt__user {
+  color: var(--color-accent);
+  text-shadow: var(--glow-soft);
+}
+
+.prompt__path {
+  color: var(--color-cyan);
+}
+
+.prompt__sigil {
+  margin-left: 0.15em;
+  color: var(--color-text);
+}
+
+.prompt__cmd {
+  color: var(--color-ink);
+}

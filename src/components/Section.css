@@ -1,0 +1,21 @@
+.section {
+  padding-block: var(--space-section);
+  border-style: solid;
+  border-width: 1px 0 0;
+  border-image: linear-gradient(90deg, var(--color-border-strong), transparent 85%) 1;
+  scroll-margin-top: var(--sticky-offset);
+}
+
+.section__title {
+  margin-bottom: var(--space-5);
+  color: var(--color-ink);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.01em;
+}
+
+.section__hash {
+  color: var(--color-accent);
+  text-shadow: var(--glow-soft);
+}

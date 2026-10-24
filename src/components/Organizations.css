@@ -1,0 +1,111 @@
+.org {
+  overflow: hidden;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.org__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.org__table th,
+.org__table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.org__table thead th {
+  background: var(--color-tint);
+  color: var(--color-accent);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.org__table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.org__table tbody th {
+  color: var(--color-ink);
+  font-weight: var(--weight-semibold);
+}
+
+.org__cell--role {
+  color: var(--color-accent-dim);
+}
+
+.org__cell--experience {
+  color: var(--color-text);
+}
+
+.org__cell--period {
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+/* Small screens: each row becomes a stacked block with inline labels. */
+@media (max-width: 40rem) {
+  .org__table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .org__table,
+  .org__table tbody,
+  .org__table tr,
+  .org__table th,
+  .org__table td {
+    display: block;
+  }
+
+  .org__table tbody tr {
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .org__table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .org__table tbody th,
+  .org__table tbody td {
+    padding: 0;
+    border: 0;
+  }
+
+  .org__table tbody th {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-md);
+  }
+
+  .org__table tbody td {
+    display: grid;
+    grid-template-columns: 6.75rem 1fr;
+    gap: var(--space-3);
+    padding-block: var(--space-1);
+  }
+
+  .org__table tbody td::before {
+    content: attr(data-label);
+    content: attr(data-label) / '';
+    color: var(--color-accent-dim);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    line-height: 2;
+    text-transform: uppercase;
+  }
+
+  .org__cell--period {
+    white-space: normal;
+  }
+}

@@ -1,0 +1,89 @@
+.hero__name {
+  margin-bottom: var(--space-4);
+  color: var(--color-ink);
+  font-size: var(--text-display) !important;
+  font-weight: var(--weight-heavy);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  text-shadow: var(--glow-name);
+}
+
+.hero__cursor {
+  color: var(--color-accent);
+  text-shadow: var(--glow);
+  animation: blink var(--blink) step-end infinite;
+}
+
+.hero__role {
+  max-width: var(--measure);
+  margin-bottom: var(--space-4);
+  color: var(--color-accent);
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  text-shadow: var(--glow-soft);
+}
+
+.hero__caret {
+  color: var(--color-text);
+  text-shadow: none;
+}
+
+.hero__intro {
+  max-width: var(--measure);
+  margin-bottom: var(--space-6);
+  font-family: var(--font-mono-text);
+}
+
+.hl {
+  color: var(--color-accent-dim);
+  font-weight: var(--weight-medium);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-target);
+  padding: 0 var(--space-5);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  white-space: pre;
+  /* pre keeps the command's inner spaces and stops the label wrapping */
+  transition:
+    box-shadow var(--duration) var(--ease),
+    background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    text-shadow var(--duration) var(--ease),
+    transform var(--duration) var(--ease);
+}
+
+.btn--solid {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  box-shadow: var(--shadow-button);
+}
+
+.btn--solid:hover {
+  box-shadow: var(--shadow-button-hover);
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  border-color: var(--color-border-strong);
+  background: transparent;
+  color: var(--color-accent);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-accent);
+  background: var(--color-tint);
+  text-shadow: var(--glow-soft);
+}
