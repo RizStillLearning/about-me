@@ -68,7 +68,7 @@ All the text on the site comes from `content/`, so you can update it without tou
 - **`bio.md`**: `##` sections for Name, Short bio, Skills, GPA, "What I'm looking for right now" and Photo. Skills are `- item` bullets. The photo uses `- Files: ./public/images/…` and `- Alt: …`.
 - **`education.md`**: numbered items like `1. School name (2021-2024)`, with optional `- Key: value` lines indented under them.
 - **`organizations.md`**: a Markdown table. Its header row becomes the table header on the site.
-- **`projects.md`**: numbered items like `1. Name: short tagline`, followed by indented `- Description:`, `- Year:`, `- Link:`, `- Icon:`, `- Frameworks:` and `- Tags:` lines. Frameworks and tags are comma-separated.
+- **`projects.md`**: numbered items like `1. Name: short tagline`, followed by indented `- Description:`, `- Year:`, `- Link:`, `- Image:`, `- Alt:`, `- Icon:`, `- Frameworks:` and `- Tags:` lines. Frameworks and tags are comma-separated. `Image:` is an optional screenshot (if the path doesn't exist, the file name is looked up in `public/images/`), and `Alt:` is its alt text.
 - **`contacts.md`**: a `## Brief Closing` paragraph and a `## Contact List` of `- Label: value` bullets. The email becomes the copyable mail command, and a WhatsApp number links to `wa.me`.
 
 Images go in `public/images/` and icons in `public/icons/`. Icons should be SVGs that use `fill="currentColor"` so they render in the site's green. Anything missing from `content/` shows up on the page as an amber `TODO:` marker instead of breaking the build.

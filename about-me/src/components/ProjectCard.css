@@ -232,3 +232,62 @@
     margin-top: var(--space-2);
   }
 }
+
+/* Screenshot: under the head by default, in its own right-hand column from 48rem. */
+.project--with-shot {
+  grid-template-areas:
+    'icon head'
+    'icon shot'
+    'icon body';
+}
+
+.project__shot {
+  grid-area: shot;
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+  min-width: 0;
+  margin-top: var(--space-3);
+}
+
+.project__frame {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration) var(--ease);
+}
+
+.project__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.project:hover .project__frame {
+  border-color: var(--color-accent-faint);
+}
+
+@media (min-width: 48rem) {
+  .project--with-shot {
+    grid-template-columns: 3.25rem minmax(0, 1fr) clamp(12rem, 28vw, 22rem);
+    grid-template-areas:
+      'icon head shot'
+      'icon body shot';
+  }
+
+  .project__shot {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 40rem) {
+  .project--with-shot {
+    grid-template-areas:
+      'icon head'
+      'shot shot'
+      'body body';
+  }
+}

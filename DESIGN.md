@@ -217,7 +217,7 @@ Every component is a React component in `about-me/src/components/` with a co-loc
 - **Small screens:** rows become blocks with the organization on top and `data-label` labels (12px uppercase dim green, 6.75rem column) beside each value.
 - Explicit ARIA table roles keep the semantics when the display is changed.
 
-**ProjectCard** (`ls -la ~/projects`): a raised card, 8px radius, `--color-border` hairline, in a single-column list with a 16px gap. Grid areas: `icon head / icon body`, and `icon head / body body` on small screens.
+**ProjectCard** (`ls -la ~/projects`): a raised card, 8px radius, `--color-border` hairline, in a single-column list with a 16px gap. Grid areas: `icon head / icon body`, and `icon head / body body` on small screens. Cards with a screenshot use the `project--with-shot` areas described below.
 - **Icon tile:** 52px (44px on small screens), black, `--color-border-strong`, 6px radius, icon drawn in `--color-accent` with the green drop-shadow.
   - SVGs are inlined at 26px (22px).
   - Icons with hard-coded colors (`fill="#…"`) lose their background `rect` and are redrawn in `currentColor` at full tile size.
@@ -230,6 +230,12 @@ Every component is a React component in `about-me/src/components/` with a co-loc
   - description in Plex Mono (max 64ch)
   - a `Frameworks:` line (green key, ink value, 13px)
   - a footer row of Tags plus the repo link: `->` and the URL without its protocol, with a break opportunity after each `/`
+- **Screenshot** (optional, from the project's `Image:` line):
+  - a 16:9 frame (black, `--color-border-strong`, 6px radius) showing the image with `object-fit: cover` from the top left, lazy-loaded
+  - from 48rem it takes a right-hand column `clamp(12rem, 28vw, 22rem)` wide (areas `icon head shot / icon body shot`)
+  - below 48rem it sits under the head in the text column (`icon head / icon shot / icon body`), and full width under 40rem (`icon head / shot shot / body body`)
+  - card hover turns the frame border `--color-accent-faint`
+  - alt text comes from the project's `- Alt:` line. Until it exists, a TODO shows under the image.
 - **Interaction:** the link stretches over the whole card. Hover lifts the card, underlines the URL and nudges the arrow. Keyboard focus draws the ring around the card via `:has()`.
 
 **Tag** is the rounded rectangle for project tags: 6px radius, `--color-border-strong` outline, `--color-tint` fill, 13px dim green 500, `2px 10px` padding. It's never fully rounded and never clickable.
@@ -281,6 +287,7 @@ Every component is a React component in `about-me/src/components/` with a co-loc
 ## 10. Implementation notes
 
 - **App and assets:** the app lives in `about-me/`. `content/` and `public/` live at the repo root and are read from there; Vite's `publicDir` points at the root `public/`.
+- **Image paths:** an image path in `content/` that doesn't exist falls back to the same file name in `public/images/`.
 - **Rendering:** React renders only at build/dev time (`about-me/plugins/prerender.ts` → `src/entry-server.tsx`). The browser gets static HTML and CSS. Client JS is limited to progressive enhancement in `src/main.ts`.
 - **Styles:**
   - `tokens.css` → `global.css` (base, utilities, `.cursor`, `.todo`, `.crt-scanlines`) → component CSS, which is pulled into the client bundle by `src/styles/components.ts`

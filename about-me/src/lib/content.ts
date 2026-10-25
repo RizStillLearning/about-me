@@ -59,8 +59,18 @@ export interface Project {
   year: string | null;
   link: string | null;
   icon: ProjectIcon | null;
+  /** Screenshot, or null when the project has no "Image:" line. */
+  image: ProjectImage | null;
   frameworks: string[];
   tags: string[];
+}
+
+export interface ProjectImage {
+  /** URL under public/, or null when the listed file can't be found. */
+  src: string | null;
+  /** The path as written in content/projects.md. */
+  ref: string;
+  alt: string | null;
 }
 
 export interface Projects {
@@ -111,6 +121,11 @@ function publicUrl(ref: string | undefined): string | null {
   const rel = ref.trim().replace(/^\.?\//, '');
   if (!rel.startsWith('public/') || !fs.existsSync(path.join(ROOT, rel))) return null;
   return '/' + rel.slice('public/'.length);
+}
+
+/** Like publicUrl, but images live in public/images/, so fall back to the file name there. */
+function imageUrl(ref: string): string | null {
+  return publicUrl(ref) ?? publicUrl(`./public/images/${path.basename(ref.trim())}`);
 }
 
 function lines(md: string): string[] {
@@ -289,6 +304,13 @@ function loadProjects(): Projects {
       year: fields.year ?? null,
       link: fields.link ?? null,
       icon: loadIcon(fields.icon) ?? loadIcon(ICON_FALLBACKS[name.toLowerCase()]),
+      image: fields.image
+        ? {
+            src: imageUrl(fields.image),
+            ref: fields.image,
+            alt: fields.alt ?? fields['image alt'] ?? fields['alt text'] ?? null,
+          }
+        : null,
       frameworks: commaList(fields.frameworks),
       tags: commaList(fields.tags),
     };

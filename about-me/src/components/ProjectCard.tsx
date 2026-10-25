@@ -26,8 +26,9 @@ function displayUrl(url: string) {
 /** One `ls -la` entry. The repo link stretches over the whole card. */
 export default function ProjectCard({ project, id }: Props) {
   const iconClass = `project__icon${project.icon?.recolor ? ' project__icon--recolor' : ''}`;
+  const { image } = project;
   return (
-    <article className="project" aria-labelledby={id}>
+    <article className={`project${image ? ' project--with-shot' : ''}`} aria-labelledby={id}>
       {project.icon ? (
         <div className={iconClass} dangerouslySetInnerHTML={{ __html: project.icon.svg }} />
       ) : (
@@ -53,6 +54,26 @@ export default function ProjectCard({ project, id }: Props) {
         </div>
         {project.tagline && <p className="project__tagline">{project.tagline}</p>}
       </header>
+
+      {image && (
+        <div className="project__shot">
+          {image.src ? (
+            <div className="project__frame">
+              <img
+                src={image.src}
+                alt={image.alt ?? 'TODO: add screenshot alt text in content/projects.md'}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          ) : (
+            <Todo>image not found: {image.ref}</Todo>
+          )}
+          {image.src && !image.alt && (
+            <Todo>screenshot alt text missing, add "- Alt:" under this project in content/projects.md</Todo>
+          )}
+        </div>
+      )}
 
       <div className="project__body">
         <p className="project__desc">{project.description ?? <Todo>description missing in content/projects.md</Todo>}</p>
