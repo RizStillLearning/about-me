@@ -77,10 +77,14 @@ export default function ProjectCard({ project, id }: Props) {
 
       <div className="project__body">
         <p className="project__desc">{project.description ?? <Todo>description missing in content/projects.md</Todo>}</p>
-        {project.frameworks.length > 0 && (
-          <dl className="project__stack">
-            <dt>Frameworks</dt>
-            <dd>{project.frameworks.join(', ')}</dd>
+        {project.details.length > 0 && (
+          <dl className="project__details">
+            {project.details.map((detail) => (
+              <div key={detail.key} className="project__detail">
+                <dt>{detail.key}</dt>
+                <dd>{detail.value}</dd>
+              </div>
+            ))}
           </dl>
         )}
         <div className="project__foot">

@@ -1,24 +1,24 @@
-.org {
+.data-table {
   overflow: hidden;
   background: var(--color-surface-raised);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
 }
 
-.org__table {
+.data-table__table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.org__table th,
-.org__table td {
+.data-table__table th,
+.data-table__table td {
   padding: var(--space-3) var(--space-4);
   border-bottom: 1px solid var(--color-border);
   text-align: left;
   vertical-align: top;
 }
 
-.org__table thead th {
+.data-table__table thead th {
   background: var(--color-tint);
   color: var(--color-accent);
   font-size: var(--text-xs);
@@ -27,31 +27,32 @@
   text-transform: uppercase;
 }
 
-.org__table tbody tr:last-child > * {
+.data-table__table tbody tr:last-child > * {
   border-bottom: 0;
 }
 
-.org__table tbody th {
+.data-table__table tbody th {
   color: var(--color-ink);
   font-weight: var(--weight-semibold);
 }
 
-.org__cell--role {
+.data-table__cell--role {
   color: var(--color-accent-dim);
 }
 
-.org__cell--experience {
+.data-table__cell--experience {
   color: var(--color-text);
 }
 
-.org__cell--period {
+.data-table__cell--period,
+.data-table__cell--year {
   color: var(--color-text);
   white-space: nowrap;
 }
 
-/* Small screens: each row becomes a stacked block with inline labels. */
+/* Small screens: rows of wide tables become stacked blocks with inline labels. */
 @media (max-width: 40rem) {
-  .org__table thead {
+  .data-table--stack thead {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -60,42 +61,42 @@
     white-space: nowrap;
   }
 
-  .org__table,
-  .org__table tbody,
-  .org__table tr,
-  .org__table th,
-  .org__table td {
+  .data-table--stack .data-table__table,
+  .data-table--stack tbody,
+  .data-table--stack tr,
+  .data-table--stack th,
+  .data-table--stack td {
     display: block;
   }
 
-  .org__table tbody tr {
+  .data-table--stack tbody tr {
     padding: var(--space-4);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .org__table tbody tr:last-child {
+  .data-table--stack tbody tr:last-child {
     border-bottom: 0;
   }
 
-  .org__table tbody th,
-  .org__table tbody td {
+  .data-table--stack tbody th,
+  .data-table--stack tbody td {
     padding: 0;
     border: 0;
   }
 
-  .org__table tbody th {
+  .data-table--stack tbody th {
     margin-bottom: var(--space-2);
     font-size: var(--text-md);
   }
 
-  .org__table tbody td {
+  .data-table--stack tbody td {
     display: grid;
     grid-template-columns: 6.75rem 1fr;
     gap: var(--space-3);
     padding-block: var(--space-1);
   }
 
-  .org__table tbody td::before {
+  .data-table--stack tbody td::before {
     content: attr(data-label);
     content: attr(data-label) / '';
     color: var(--color-accent-dim);
@@ -105,7 +106,7 @@
     text-transform: uppercase;
   }
 
-  .org__cell--period {
+  .data-table--stack .data-table__cell--period {
     white-space: normal;
   }
 }

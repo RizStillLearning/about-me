@@ -122,23 +122,28 @@
   font-family: var(--font-mono-text);
 }
 
-.project__stack {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 1ch;
+/* Key/value rows (Category, Type, Role, Frameworks…) with the keys in one aligned column. */
+.project__details {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--space-1) 1ch;
   margin-top: var(--space-3);
   font-size: var(--text-sm);
 }
 
-.project__stack dt {
+.project__detail {
+  display: contents;
+}
+
+.project__details dt {
   color: var(--color-accent);
 }
 
-.project__stack dt::after {
+.project__details dt::after {
   content: ':';
 }
 
-.project__stack dd {
+.project__details dd {
   color: var(--color-ink);
 }
 

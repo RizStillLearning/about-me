@@ -135,14 +135,19 @@
   }
 }
 
+/*
+ * The hero states the same thing right below. Below 70rem the bar can't fit the path,
+ * five nav links and the status on one row, so drop the status rather than wrap.
+ */
+@media (max-width: 69.99rem) {
+  .window__status {
+    display: none;
+  }
+}
+
 @media (max-width: 47.99rem) {
   .window__bar {
     padding-inline: var(--space-3);
-  }
-
-  /* The hero states the same thing right below on small screens. */
-  .window__status {
-    display: none;
   }
 
   .window__nav {

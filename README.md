@@ -13,6 +13,7 @@ The page reads like a shell session, and each section opens with a command:
 | Bio | `whoami`, `neofetch` | [`content/bio.md`](content/bio.md) |
 | Education | `cat education.md` | [`content/education.md`](content/education.md) |
 | Organizations | `cat organizations.md` | [`content/organizations.md`](content/organizations.md) |
+| Competitions | `cat competitions.md` | [`content/competitions.md`](content/competitions.md) |
 | Projects | `ls -la ~/projects` | [`content/projects.md`](content/projects.md) |
 | Contact | `./contact` | [`content/contacts.md`](content/contacts.md) |
 
@@ -67,8 +68,8 @@ All the text on the site comes from `content/`, so you can update it without tou
 
 - **`bio.md`**: `##` sections for Name, Short bio, Skills, GPA, "What I'm looking for right now" and Photo. Skills are `- item` bullets. The photo uses `- Files: ./public/images/…` and `- Alt: …`.
 - **`education.md`**: numbered items like `1. School name (2021-2024)`, with optional `- Key: value` lines indented under them.
-- **`organizations.md`**: a Markdown table. Its header row becomes the table header on the site.
-- **`projects.md`**: numbered items like `1. Name: short tagline`, followed by indented `- Description:`, `- Year:`, `- Link:`, `- Image:`, `- Alt:`, `- Icon:`, `- Frameworks:` and `- Tags:` lines. Frameworks and tags are comma-separated. `Image:` is an optional screenshot (if the path doesn't exist, the file name is looked up in `public/images/`), and `Alt:` is its alt text.
+- **`organizations.md`** and **`competitions.md`**: a heading plus a Markdown table. The header row becomes the table header on the site; other lines (like `> notes`) are ignored.
+- **`projects.md`**: numbered items like `1. Name: short tagline`, followed by indented `- Description:`, `- Year:`, `- Link:`, `- Image:`, `- Alt:`, `- Icon:` and `- Tags:` lines (tags are comma-separated). Any other `- Key: value` line, such as `Category`, `Type`, `Role` or `Frameworks`, shows on the card as a detail row, in the order you write them. `Image:` is an optional screenshot (if the path doesn't exist, the file name is looked up in `public/images/`), and `Alt:` is its alt text.
 - **`contacts.md`**: a `## Brief Closing` paragraph and a `## Contact List` of `- Label: value` bullets. The email becomes the copyable mail command, and a WhatsApp number links to `wa.me`.
 
 Images go in `public/images/` and icons in `public/icons/`. Icons should be SVGs that use `fill="currentColor"` so they render in the site's green. Anything missing from `content/` shows up on the page as an amber `TODO:` marker instead of breaking the build.

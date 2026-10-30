@@ -39,7 +39,8 @@ export interface Education {
   schools: School[];
 }
 
-export interface Organizations {
+/** A content file that is a heading plus one Markdown table (organizations, competitions). */
+export interface TableData {
   title: string | null;
   headers: string[];
   rows: string[][];
@@ -61,7 +62,8 @@ export interface Project {
   icon: ProjectIcon | null;
   /** Screenshot, or null when the project has no "Image:" line. */
   image: ProjectImage | null;
-  frameworks: string[];
+  /** Every other "Key: value" line (Category, Type, Role, Frameworks…), in content order. */
+  details: KeyValue[];
   tags: string[];
 }
 
@@ -94,7 +96,8 @@ export interface Contacts {
 export interface Site {
   bio: Bio;
   education: Education;
-  organizations: Organizations;
+  organizations: TableData;
+  competitions: TableData;
   projects: Projects;
   contacts: Contacts;
 }
@@ -255,8 +258,9 @@ function loadEducation(): Education {
   return { title: headingTitle(md), schools };
 }
 
-function loadOrganizations(): Organizations {
-  const md = readText('content/organizations.md');
+/** Heading + the file's Markdown table. Other lines (e.g. "> notes") are ignored. */
+function loadTable(file: string): TableData {
+  const md = readText(file);
   const rows = lines(md)
     .map((l) => l.trim())
     .filter((l) => l.startsWith('|'))
@@ -287,15 +291,31 @@ function loadIcon(ref: string | undefined): ProjectIcon | null {
   return { svg, recolor: /\s(?:fill|stroke)="#/i.test(svg) };
 }
 
+/** Project fields with their own place on the card; any other key becomes a detail row. */
+const PROJECT_FIELDS_SHOWN_ELSEWHERE = new Set([
+  'description',
+  'year',
+  'link',
+  'image',
+  'alt',
+  'image alt',
+  'alt text',
+  'icon',
+  'tags',
+]);
+
 function loadProjects(): Projects {
   const md = readText('content/projects.md');
   const items = numberedItems(md).map(({ text, subs }) => {
     const title = splitKey(text);
     const name = title.key || title.value;
     const fields: Record<string, string> = {};
+    const details: KeyValue[] = [];
     for (const sub of subs) {
       const { key, value } = splitKey(sub);
-      if (key) fields[key.toLowerCase()] = value;
+      if (!key) continue;
+      fields[key.toLowerCase()] = value;
+      if (!PROJECT_FIELDS_SHOWN_ELSEWHERE.has(key.toLowerCase())) details.push({ key, value });
     }
     return {
       name,
@@ -311,7 +331,7 @@ function loadProjects(): Projects {
             alt: fields.alt ?? fields['image alt'] ?? fields['alt text'] ?? null,
           }
         : null,
-      frameworks: commaList(fields.frameworks),
+      details,
       tags: commaList(fields.tags),
     };
   });
@@ -347,7 +367,8 @@ export function loadSite(): Site {
   return {
     bio: loadBio(),
     education: loadEducation(),
-    organizations: loadOrganizations(),
+    organizations: loadTable('content/organizations.md'),
+    competitions: loadTable('content/competitions.md'),
     projects: loadProjects(),
     contacts: loadContacts(),
   };

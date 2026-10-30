@@ -105,12 +105,13 @@ Both are self-hosted through `@fontsource`. **Never** use Inter, Roboto, Arial o
 
 - `max-width: 40rem` (640px) is the small-screen layout:
   - the neofetch panel stacks
-  - the table rows become labelled blocks
+  - rows of tables with more than two columns become labelled blocks (two-column tables stay as tables)
   - the project icon sits beside the name and the body spans full width
   - the command box stacks
   - the social links become a 2×2 grid
   - the tree leaders hide
-- `min-width: 48rem` (768px): the title bar becomes sticky. Below 48rem the amber status is hidden (the hero says the same thing) and the nav wraps onto its own row.
+- `min-width: 48rem` (768px): the title bar becomes sticky. Below 48rem the nav wraps onto its own row.
+- `max-width: 69.99rem` (below 1120px): the amber status is hidden, because the hero says the same thing and the path, five nav links and status no longer fit on one row.
 
 **Grid rules**
 
@@ -164,8 +165,8 @@ Every component is a React component in `about-me/src/components/` with a co-loc
   - three 12px dots
   - the path label `harris@portfolio: ~` (user in bold green, `~` in cyan)
   - a right-aligned nav
-  - an amber status: an 8px blinking dot plus text derived from content
-- Nav links read `~/<section>`. The `~/` prefix is `--color-accent-dim` and `aria-hidden`. Links turn green and glow on hover and are 44px tall.
+  - an amber status: an 8px blinking dot plus text derived from content, shown from 70rem
+- Nav links read `~/<section>`, one per section after the bio (education, organizations, competitions, projects, contact). The `~/` prefix is `--color-accent-dim` and `aria-hidden`. Links turn green and glow on hover and are 44px tall.
 - The body is the page's `<main>`.
 
 **Prompt** is the decorative command line before every section.
@@ -176,6 +177,7 @@ Every component is a React component in `about-me/src/components/` with a co-loc
   - `neofetch`
   - `cat education.md`
   - `cat organizations.md`
+  - `cat competitions.md`
   - `ls -la ~/projects`
   - `./contact`
 
@@ -211,10 +213,10 @@ Every component is a React component in `about-me/src/components/` with a co-loc
 - max width 48rem
 - on small screens the leader hides and the period drops under the name
 
-**Organizations table** (`cat organizations.md`): a real `<table>` in a raised, hairlined, 8px panel.
+**TableSection** (`cat organizations.md`, `cat competitions.md`): one component for any section whose content file is a heading plus a Markdown table. It renders a real `<table>` in a raised, hairlined, 8px panel (`.data-table`).
 - Header row on `--color-tint`, 12px uppercase tracked green.
-- The first cell of each row is a `th scope="row"` (ink semibold). Role is dim green; experience and period are sage. Period doesn't wrap.
-- **Small screens:** rows become blocks with the organization on top and `data-label` labels (12px uppercase dim green, 6.75rem column) beside each value.
+- The first cell of each row is a `th scope="row"` (ink semibold). Cells get a modifier from their column header (`data-table__cell--role`, `--period`, `--year`…): role is dim green; experience, period and year are sage; period and year don't wrap.
+- **Small screens:** tables with more than two columns (`.data-table--stack`, e.g. Organizations) turn each row into a block with the first cell on top and `data-label` labels (12px uppercase dim green, 6.75rem column) beside each value. Two-column tables (Competitions) stay as tables.
 - Explicit ARIA table roles keep the semantics when the display is changed.
 
 **ProjectCard** (`ls -la ~/projects`): a raised card, 8px radius, `--color-border` hairline, in a single-column list with a 16px gap. Grid areas: `icon head / icon body`, and `icon head / body body` on small screens. Cards with a screenshot use the `project--with-shot` areas described below.
@@ -228,7 +230,7 @@ Every component is a React component in `about-me/src/components/` with a co-loc
   - the tagline below in ink 500
 - **Body:**
   - description in Plex Mono (max 64ch)
-  - a `Frameworks:` line (green key, ink value, 13px)
+  - detail rows: every other `Key: value` line from the project's content (Category, Type, Role, Frameworks…), in content order, as a two-column grid with the keys aligned (green key with `:`, ink value, 13px)
   - a footer row of Tags plus the repo link: `->` and the URL without its protocol, with a break opportunity after each `/`
 - **Screenshot** (optional, from the project's `Image:` line):
   - a 16:9 frame (black, `--color-border-strong`, 6px radius) showing the image with `object-fit: cover` from the top left, lazy-loaded

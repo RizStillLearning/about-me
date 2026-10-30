@@ -1,10 +1,13 @@
-import type { Organizations as OrganizationsData } from '../lib/content';
+import type { TableData } from '../lib/content';
 import Section from './Section';
 import Todo from './Todo';
-import './Organizations.css';
+import './TableSection.css';
 
 interface Props {
-  organizations: OrganizationsData;
+  id: string;
+  /** Content file name, shown in the `cat` prompt and in the empty-state TODO. */
+  file: string;
+  table: TableData;
   user: string;
 }
 
@@ -13,16 +16,18 @@ function slug(text: string) {
 }
 
 /**
- * `cat organizations.md`: a real table. Explicit ARIA roles keep table semantics
- * when the small-screen layout restyles rows as stacked blocks.
+ * `cat <file>`: a section whose content is one real table (Organizations, Competitions).
+ * Explicit ARIA roles keep table semantics when the small-screen layout restyles rows
+ * as stacked blocks, which only happens for tables with more than two columns.
  */
-export default function Organizations({ organizations, user }: Props) {
-  const { headers, rows } = organizations;
+export default function TableSection({ id, file, table, user }: Props) {
+  const { headers, rows } = table;
+  const stack = headers.length > 2;
   return (
-    <Section id="organizations" user={user} command="cat organizations.md" title={organizations.title}>
+    <Section id={id} user={user} command={`cat ${file}`} title={table.title}>
       {rows.length ? (
-        <div className="org">
-          <table className="org__table" role="table" aria-labelledby="organizations-title">
+        <div className={`data-table${stack ? ' data-table--stack' : ''}`}>
+          <table className="data-table__table" role="table" aria-labelledby={`${id}-title`}>
             <thead role="rowgroup">
               <tr role="row">
                 {headers.map((header) => (
@@ -37,7 +42,7 @@ export default function Organizations({ organizations, user }: Props) {
                 <tr key={row.join('|')} role="row">
                   {row.map((cell, i) => {
                     const label = headers[i] ?? '';
-                    const className = `org__cell org__cell--${slug(label)}`;
+                    const className = `data-table__cell data-table__cell--${slug(label)}`;
                     return i === 0 ? (
                       <th key={i} scope="row" role="rowheader" className={className}>
                         {cell}
@@ -54,7 +59,7 @@ export default function Organizations({ organizations, user }: Props) {
           </table>
         </div>
       ) : (
-        <Todo>no organizations found in content/organizations.md</Todo>
+        <Todo>no table rows found in content/{file}</Todo>
       )}
     </Section>
   );

@@ -38,6 +38,7 @@ The goal: in under a minute, a visitor understands who Harris is, sees his best 
 ## Website structure
 1. Bio (./content/bio.md)
 2. Education (./content/education.md)
-3. Organizations (.content/organizations.md)
-4. Projects (./content/projects.md)
-5. Contacts (./content/contacts.md)
+3. Organizations (./content/organizations.md)
+4. Competitions (./content/competitions.md)
+5. Projects (./content/projects.md)
+6. Contacts (./content/contacts.md)
